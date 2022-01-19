@@ -244,9 +244,8 @@ public:
    * @param reg register
    * @param pBuf  buf for store data to write 
    * @param size  The number of the data in pBuf
-   * @return The number of successfully sent data
    */
-  uint8_t  writeReg(uint8_t reg,const void *pBuf,size_t size); 
+  void  writeReg(uint8_t reg,const void *pBuf,size_t size); 
 
 private:
   uint8_t _deviceAddr;
