@@ -1,4 +1,7 @@
 # DFRobot_LIS
+
+* [English Version](./README.md)
+  
 H3LIS200DL是一款低功耗、高性能的3轴线性加速度计
 属于“纳米”家族，具有数字I2C/SPI
 串行接口标准输出。

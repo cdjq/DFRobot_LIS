@@ -62,8 +62,7 @@ public:
   #define REG_TAP_THS_Z    0x32     ///<Threshold for tap recognition @ FS = ±2 g on Z direction
   #define REG_INT_DUR      0x33     ///<Interrupt duration register
   #define REG_WAKE_UP_THS  0x34     ///<Wakeup threshold register
-  #define SPI_READ_BIT     0X80     ///<bit 0: RW bit. When 0, the data DI(7:0) is written into the device. When 1, the data DO(7:0) 
-from the device is read.*/
+  #define SPI_READ_BIT     0X80     ///<bit 0: RW bit. When 0, the data DI(7:0) is written into the device. When 1, the data DO(7:0) from the device is read.*/
 
 public:
 
