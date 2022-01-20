@@ -12,7 +12,7 @@
 #include "DFRobot_LIS2DH12.h"
 
 
-DFRobot_LIS2DH12::DFRobot_LIS2DH12(TwoWire * pWire,uint8_t addr)
+DFRobot_LIS2DH12::DFRobot_LIS2DH12(TwoWire *pWire,uint8_t addr)
 {
   _deviceAddr = addr;
   _pWire = pWire;
