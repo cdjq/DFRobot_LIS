@@ -41,14 +41,14 @@ bool DFRobot_LIS2DH12::begin(void)
 int32_t DFRobot_LIS2DH12::readAccX()
 {
   int8_t sensorData[2];
-  int32_t a;
+  int32_t data;
   readReg(REG_OUT_X_L|0x80,sensorData,2);
   #if defined(__AVR__) 
-    a = -(sensorData[1]  * (uint8_t)_mgScaleVel);
+    data = -(sensorData[1]  * (uint8_t)_mgScaleVel);
   #else 
-    a = (sensorData[1]  * (uint8_t)_mgScaleVel);
+    data = (sensorData[1]  * (uint8_t)_mgScaleVel);
   #endif
-  return a;
+  return limitAccelerationData(data);
 }
 
 int32_t DFRobot_LIS2DH12::readAccY()
@@ -61,7 +61,7 @@ int32_t DFRobot_LIS2DH12::readAccY()
   #else 
     a = (sensorData[1]  * (uint8_t)_mgScaleVel);
   #endif
-  return a;
+  return limitAccelerationData(a);
 }
 
 int32_t DFRobot_LIS2DH12::readAccZ()
@@ -76,7 +76,7 @@ int32_t DFRobot_LIS2DH12::readAccZ()
   #else 
     a = (sensorData[1]* (uint8_t)_mgScaleVel);
   #endif
-  return a;
+  return limitAccelerationData(a);
 }
 
 void DFRobot_LIS2DH12::setRange(eRange_t range)
@@ -278,4 +278,34 @@ bool DFRobot_LIS2DH12::getInt2Event(eInterruptEvent_t event)
     ret = false;
   }
   return ret;
+}
+
+int32_t DFRobot_LIS2DH12::limitAccelerationData(int32_t data)
+{
+  // Set appropriate limit values based on measurement range
+  if(_mgScaleVel == 16){      // 2g range
+    if(data > 2000)
+      data = 2000;
+    else if(data < -2000)
+      data = -2000;
+  }
+  else if(_mgScaleVel == 32){ // 4g range
+    if(data > 4000)
+      data = 4000;
+    else if(data < -4000)
+      data = -4000;
+  }
+  else if(_mgScaleVel == 64){ // 8g range
+    if(data > 8000)
+      data = 8000;
+    else if(data < -8000)
+      data = -8000;
+  }
+  else if(_mgScaleVel == 192){ // 16g range
+    if(data > 16000)
+      data = 16000;
+    else if(data < -16000)
+      data = -16000;
+  }
+  return data;
 }

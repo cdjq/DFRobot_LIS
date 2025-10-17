@@ -255,5 +255,13 @@ private:
   TwoWire *_pWire;
   uint8_t _mgScaleVel = 16;
   uint8_t _reset = 0;
+  
+  /**
+   * @fn limitAccelerationData
+   * @brief Limit acceleration data based on measurement range
+   * @param data Acceleration data to be limited
+   * @return Limited acceleration data
+   */
+  int32_t limitAccelerationData(int32_t data);
 };
 #endif

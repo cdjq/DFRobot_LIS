@@ -511,6 +511,7 @@ DFRobot_LIS2DW12::eOrient_t DFRobot_LIS2DW12::getOrientation()
   } else if((value & 0x20) > 0){
      return eZUp;
   }
+  return eNONE;
 }
 DFRobot_LIS2DW12::eTap_t DFRobot_LIS2DW12::tapDetect()
 {
@@ -588,6 +589,7 @@ uint8_t DFRobot_IIS2DLPC_I2C::writeReg(uint8_t reg, const void * pBuf, size_t si
     _pWire->write(_pBuf[i]);
   }
   _pWire->endTransmission();
+  return 1;
 }
 
 uint8_t DFRobot_IIS2DLPC_I2C::readReg(uint8_t reg, uint8_t* pBuf, size_t size)
@@ -662,7 +664,7 @@ uint8_t  DFRobot_IIS2DLPC_SPI::writeReg(uint8_t reg,const void *pBuf,size_t size
   }
   SPI.endTransaction();
   digitalWrite(_cs,1);
-
+  return 1;
 }
 DFRobot_LIS2DW12_I2C::DFRobot_LIS2DW12_I2C(TwoWire * pWire,uint8_t addr)
 {
@@ -691,6 +693,7 @@ uint8_t DFRobot_LIS2DW12_I2C::writeReg(uint8_t reg, const void * pBuf, size_t si
     _pWire->write(_pBuf[i]);
   }
   _pWire->endTransmission();
+ return 1;
 }
 
 uint8_t DFRobot_LIS2DW12_I2C::readReg(uint8_t reg, uint8_t* pBuf, size_t size)
@@ -770,5 +773,5 @@ uint8_t  DFRobot_LIS2DW12_SPI::writeReg(uint8_t reg,const void *pBuf,size_t size
   }
   SPI.endTransaction();
   digitalWrite(_cs,1);
-
+  return 1;
 }
